@@ -130,19 +130,37 @@ def cekme_helvalar_sil(urun_id):
     con.commit()
     con.close()
 
-def sayim():
-    con = connect_db()
-    cursor = con.cursor()
-    all_data = []
-    cursor.execute("SELECT * FROM pismaniyeler")
-    a = cursor.fetchall()
-    all_data.extend(a)
-    cursor.execute("SELECT * FROM kestane_sekerleri")
-    b = cursor.fetchall()
-    all_data.extend(b)
-    cursor.execute("SELECT * FROM cekme_helvalar")
-    c = cursor.fetchall()
-    all_data.extend(c)
-    con.close()
+class Muhasebe:
+    def __init__(self):
+        self.fiyat_list = []
+        self.urun_id = []
 
-    return all_data
+    def sayim(self):
+        con = connect_db()
+        cursor = con.cursor()
+        all_data = []
+        cursor.execute("SELECT * FROM pismaniyeler")
+        all_data.extend(cursor.fetchall())
+        cursor.execute("SELECT * FROM kestane_sekerleri")
+        all_data.extend(cursor.fetchall())
+        cursor.execute("SELECT * FROM cekme_helvalar")
+        all_data.extend(cursor.fetchall())
+        cursor.close()
+        con.close()
+
+        return all_data
+
+    def pismaniyeler(self):
+        con = connect_db()
+        cursor = con.cursor()
+        cursor.execute("SELECT fiyat FROM pismaniyeler")
+        self.fiyat_list = [item[0] for item in cursor.fetchall()]
+        cursor.execute("SELECT id FROM pismaniyeler")
+        self.urun_id = [item[0] for item in cursor.fetchall()]
+        cursor.close()
+        con.close()
+        print("Ürün ID Listesi:", self.urun_id)
+        print("Fiyat Listesi:", self.fiyat_list)
+
+muhasebe = Muhasebe()
+muhasebe.pismaniyeler()

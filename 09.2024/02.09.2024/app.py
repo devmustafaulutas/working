@@ -18,6 +18,7 @@ while True:
         elif selection_2 ==3:
             function.del_products()
         elif selection_2 ==4:
+            print("#")
         elif selection_2 ==5:
             print("#")
     elif selection ==2:

@@ -19,9 +19,11 @@ while True:
             function.del_products()
         elif selection_2 ==4:
         elif selection_2 ==5:
+            print("#")
     elif selection ==2:
-        #
+        print("#")
     elif selection ==3:
+        print("#")
     
     elif selection ==4:
         print("Have a great day!")

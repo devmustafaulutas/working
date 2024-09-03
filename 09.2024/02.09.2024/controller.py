@@ -45,6 +45,7 @@ class Functions:
         else:
             raise ValueError
         while True:
+            self.query.all_products()
             self.interfaces.break_point()
             id_selection = int(input("Selection: "))
             self.query.del_product(category,id_selection)

@@ -83,15 +83,15 @@ class Querys:
         try:
             self.cursor.execute(query, values)
             self.con.commit()
-            print("Product added successfully!")
+            print("Product deleted successfully!")
 
         except mysql.connector.Error as error:
-            print("Failed to add product: {}".format(error))
+            print("Failed to delete product: {}".format(error))
             self.con.rollback()
 
         finally:
             self.cursor.close()
             self.con.close()
 
-# query = querys()
+# query = Querys()
 # query.all_products()

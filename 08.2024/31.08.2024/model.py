@@ -224,9 +224,9 @@ class Muhasebe:
             kestane_sekeri_satis = kestane_sekeri_adet - kestane_sekeri_yeni_data
             cekme_helva_satis = cekme_helva_adet - chelva_yeni_data
             for i in pismaniye_adet:
-            print(pismaniye_satis)
-            print(kestane_sekeri_satis)
-            print(cekme_helva_satis)
+                print(pismaniye_satis)
+                print(kestane_sekeri_satis)
+                print(cekme_helva_satis)
 
         pismaniye_adet, kestane_sekeri_adet, cekme_helva_adet = eski_pismaniye_adet()
 

@@ -1,4 +1,6 @@
 from controller import Functions
+from model import Tables
 
-function = Functions()
-function.del_products()
+
+table=Tables()
+table.all_tables()

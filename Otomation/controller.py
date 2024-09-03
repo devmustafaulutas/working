@@ -27,9 +27,9 @@ class Functions:
         
         while True:
             new_product_name = input("New product name: ")
-            new_product_piece = int(input("New product piece: "))
+            new_product_quantity = int(input("New product quantity: "))
             new_product_price = int(input("New product price: "))
-            self.query.add_product(category,new_product_name,new_product_piece,new_product_price)
+            self.query.add_product(category,new_product_name,new_product_quantity,new_product_price)
 
             self.interfaces.break_point()
             break_point = int(input("Selection: "))
@@ -81,9 +81,9 @@ class Functions:
         while True:
             product_id = int(input("The product id: "))
             new_name = input("New name: ")
-            new_piece = int(input("New piece: "))
+            new_quantity = int(input("New quantity: "))
             new_price = int(input("New price: "))
-            self.query.update_product(category,product_id,new_name,new_piece,new_price)
+            self.query.update_product(category,product_id,new_name,new_quantity,new_price)
 
             self.interfaces.break_point()
             break_point = int(input("Selection: "))

@@ -1,6 +1,5 @@
-from controller import Functions
-from model import Tables
+from model import DataBase
 
 
-table=Tables()
-table.all_tables()
+db=DataBase()
+db.all_tables()

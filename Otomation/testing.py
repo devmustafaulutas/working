@@ -1,5 +1,6 @@
-from model import DataBase
+from controller import Functions
 
+func = Functions()
 
-db=DataBase()
-db.all_tables()
+func.restock()
+

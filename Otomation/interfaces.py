@@ -1,6 +1,6 @@
 
 class İnterfaces():
-    def main():
+    def main(self):
         print("""
 ------------------------------------------------
                 İPEK PİŞMANİYE          
@@ -10,7 +10,7 @@ class İnterfaces():
     4 ) Exit
 ------------------------------------------------""")
         
-    def product_managment_interface():
+    def product_managment_interface(self):
             print("""
 ------------------------------------------------
                 İPEK PİŞMANİYE          
@@ -21,7 +21,7 @@ class İnterfaces():
     5 ) Exit
 ------------------------------------------------""")
 
-    def categorys():
+    def categorys(self):
         print("""
 ------------------------------------------------
                 İPEK PİŞMANİYE          
@@ -30,14 +30,14 @@ class İnterfaces():
     3 ) Çekme Helva
     4 ) Exit
 ------------------------------------------------""")
-    def break_point():
+    def break_point(self):
          print("""    
 ------------------------------------------------
                 İPEK PİŞMANİYE          
     1 ) Continue
     0 ) Exit
 ------------------------------------------------""")
-    def accounting_interface():
+    def accounting_interface(self):
         print("""    
 ------------------------------------------------
                 İPEK PİŞMANİYE          
@@ -47,7 +47,7 @@ class İnterfaces():
     0 ) Exit
 ------------------------------------------------""")
 
-    def managing_interface():
+    def managing_interface(self):
         print("""    
 ------------------------------------------------
                 İPEK PİŞMANİYE          

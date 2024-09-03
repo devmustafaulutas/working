@@ -15,7 +15,7 @@ class Tables:
         self.con = connect_db()
         self.cursor = self.con.cursor()
     
-    def all_products(self):
+    def all_tables(self):
         
         self.cursor.execute("""
         CREATE TABLE IF NOT EXISTS kestane_sekerleri(
@@ -43,6 +43,7 @@ class Tables:
             adet INT
         )
         """)
+        self.cursor.close()
         self.con.close()
 
 class Querys:
@@ -50,16 +51,31 @@ class Querys:
         self.con = connect_db()
         self.cursor = self.con.cursor()
 
-    
+    def close_connection(self):
+        self.cursor.close()
+        self.con.close()
+
     def all_products(self):
-        self.cursor.execute("""
-        SELECT id,isim,adet,fiyat FROM pismaniyeler
+        all_products = []
+        query = """
+        SELECT id, isim, adet, fiyat FROM pismaniyeler
         UNION
-        SELECT id,isim,adet,fiyat FROM kestane_sekerleri
+        SELECT id, isim, adet, fiyat FROM kestane_sekerleri
         UNION
-        SELECT id,isim,adet,fiyat FROM cekme_helvalar;
-        """)        
-        
+        SELECT id, isim, adet, fiyat FROM cekme_helvalar;
+        """
+        self.cursor.execute(query)
+        data = self.cursor.fetchall()
+        all_products.extend(data)
+        print(all_products)
+    
+    def products(self,category):
+        products  = []
+        self.cursor.execute(f"SELECT * FROM {category}")
+        data = self.cursor.fetchall()
+        products.extend(data)
+        print(products)
+
     def add_product(self,category,name,piece,price):
         query = f"INSERT INTO {category} (isim,adet,fiyat) VALUES (%s,%s,%s)"
         values = (name,piece,price)
@@ -73,25 +89,39 @@ class Querys:
             self.con.rollback()
 
         finally:
-            self.cursor.close()
-            self.con.close()
+            self.close_connection()
 
     def del_product(self,category,id):
-        self.all_products()
-        query = f"DELETE FROM {category} WHERE (id) VALUES (%s)"
-        values = (id)
+        query = f"DELETE FROM {category} WHERE id = {id}"
         try:
-            self.cursor.execute(query, values)
+            self.cursor.execute(query)
             self.con.commit()
             print("Product deleted successfully!")
 
         except mysql.connector.Error as error:
             print("Failed to delete product: {}".format(error))
             self.con.rollback()
+        finally:
+            self.close_connection()
+
+
+    def update_product(self, category, product_id, new_name, new_piece, new_price):
+        
+        query = f"UPDATE {category} SET isim = %s, adet = %s, fiyat = %s WHERE id = %s"
+        values = (new_name, new_piece, new_price, product_id)
+
+        try:
+            self.cursor.execute(query, values)
+            self.con.commit()
+            print("Product updated successfully!")
+
+        except mysql.connector.Error as error:
+            print("Failed to update product: {}".format(error))
+            self.con.rollback()
 
         finally:
-            self.cursor.close()
-            self.con.close()
+            self.close_connection()
+
 
 # query = Querys()
-# query.all_products()
+# query.all_tables()

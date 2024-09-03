@@ -12,13 +12,13 @@ while True:
         selection_2 = int(input("Selection: "))
 
         if selection_2 ==1:
-            function.all_products()
+            function.show_products()
         elif selection_2 ==2:
             function.add_products()
         elif selection_2 ==3:
             function.del_products()
         elif selection_2 ==4:
-            print("#")
+            function.update_products()
         elif selection_2 ==5:
             print("#")
     elif selection ==2:
@@ -28,3 +28,4 @@ while True:
     
     elif selection ==4:
         print("Have a great day!")
+        break

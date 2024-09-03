@@ -54,7 +54,7 @@ class Querys:
             self.close_connection()
 
     def update_product(self, category, product_id, new_name, new_quantity, new_price, new_code):
-        query = f"UPDATE {category} SET name = %s, quantity = %s, price = %s code = %s WHERE id = %s"
+        query = f"UPDATE {category} SET name = %s, quantity = %s, price = %s, code = %s WHERE id = %s"
         values = (new_name, new_quantity, new_price, new_code, product_id)
         try:
             self.cursor.execute(query, values)

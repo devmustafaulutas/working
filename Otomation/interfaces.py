@@ -44,7 +44,7 @@ class İnterfaces():
     1 ) Daily report
     2 ) Restock
     3 ) Daily Calculation
-    0 ) Exit
+    4 ) Exit
 ------------------------------------------------""")
 
     def managing_interface(self):
@@ -52,7 +52,8 @@ class İnterfaces():
 ------------------------------------------------
                 İPEK PİŞMANİYE          
     1 ) Daily Accounting
-    0 ) Exit
+    2 ) Workers
+    3 ) Exit
 ------------------------------------------------""")
     def calculation_false(self,dailysale,cash,credit_card,expenses,discount,calc):
         print(f"""    
@@ -72,3 +73,14 @@ class İnterfaces():
     1 ) Daily Report Update
     0 ) Continue
 ------------------------------------------------""")
+    def manage_workers(self):
+        print("""    
+------------------------------------------------
+                İPEK PİŞMANİYE          
+    1 ) Show Workers
+    2 ) Add Worker
+    3 ) Delete Worker
+    4 ) Update Worker
+    5 ) Exit
+------------------------------------------------""")
+    

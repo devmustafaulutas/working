@@ -1,8 +1,18 @@
 from model import Querys
 from datetime import datetime
 
-date = datetime.today().date()
-query = Querys()
+print("""
+      
 
 
-query.daily_report_check(date)
+
+----------------------------------------------------
+      Creating Malware is Succsessfully done!
+----------------------------------------------------
+      
+      
+      
+      
+      
+      
+      """)

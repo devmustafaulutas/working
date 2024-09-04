@@ -51,9 +51,8 @@ class İnterfaces():
         print("""    
 ------------------------------------------------
                 İPEK PİŞMANİYE          
-    1 ) Daily Accounting
-    2 ) Workers
-    3 ) Exit
+    1 ) Workers
+    2 ) Exit
 ------------------------------------------------""")
     def calculation_false(self,dailysale,cash,credit_card,expenses,discount,calc):
         print(f"""    

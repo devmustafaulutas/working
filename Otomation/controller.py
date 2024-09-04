@@ -188,10 +188,11 @@ class Functions:
         try:
             worker_id = int(input("Worker id: "))
             name = input("Worker name: ")
+            surname = input("Worker surname: ")
             salary = int(input("Daily salary: "))
-            hire_date = input("Hire date: ")
 
-            self.query.update_worker(name,salary,hire_date,worker_id)
+
+            self.query.update_worker(name,salary,surname,worker_id)
 
             print("Worker saved successfully!")
         except ValueError as err:print(f"Invalid input: {err}")

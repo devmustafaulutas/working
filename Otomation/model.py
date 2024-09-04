@@ -135,7 +135,6 @@ class Querys:
         finally:
             self.close_connection()
 
-
     def del_worker(self, id):
         query = "DELETE FROM workers WHERE id = %s"
         values = (id)
@@ -148,7 +147,18 @@ class Querys:
             self.con.rollback()
         finally:
             self.close_connection()
-    def update_worker(self):
+
+    def update_worker(self,name,surname,salary):
         query = """
-        UPDATE workers
+        UPDATE workers SET name = %s , surname = %s , salary = %s 
         """
+        values = (name,surname,salary)
+        try:
+            self.cursor.execute(query, values)
+            self.con.commit()
+            print("Worker updated successfully!")
+        except mysql.connector.Error as error:
+            print(f"Failed to update worker: {error}")
+            self.con.rollback()
+        finally:
+            self.close_connection()

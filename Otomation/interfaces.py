@@ -43,7 +43,7 @@ class İnterfaces():
                 İPEK PİŞMANİYE          
     1 ) Daily report
     2 ) Restock
-    3 ) Daily Accounting
+    3 ) Daily Calculation
     0 ) Exit
 ------------------------------------------------""")
 
@@ -53,4 +53,22 @@ class İnterfaces():
                 İPEK PİŞMANİYE          
     1 ) Daily Accounting
     0 ) Exit
+------------------------------------------------""")
+    def calculation_false(self,dailysale,cash,credit_card,expenses,discount,calc):
+        print(f"""    
+------------------------------------------------
+                THE VALUES
+    1 ) Daily Sales : {dailysale}
+    2 ) Cash : {cash}
+    3 ) Credit Card : {credit_card}
+    4 ) Expenses : {expenses}
+    5 ) Discount : {discount}
+    6 ) Calculation : {calc} 
+------------------------------------------------""")
+    def daily_report_update_interface(self):
+        print("""    
+------------------------------------------------
+                İPEK PİŞMANİYE          
+    1 ) Daily Report Update
+    0 ) Continue
 ------------------------------------------------""")

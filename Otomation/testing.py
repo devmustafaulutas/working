@@ -1,6 +1,8 @@
-from controller import Functions
+from model import Querys
+from datetime import datetime
 
-func = Functions()
+date = datetime.today().date()
+query = Querys()
 
-func.restock()
 
+query.daily_report_check(date)

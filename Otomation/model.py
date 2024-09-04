@@ -74,6 +74,7 @@ class Querys:
             self.con.commit()
         except mysql.connector.Error as error:
             print(f"Failed to save restock: {error}")
+            self.con.rollback()
         finally:
             self.con.close()
 
@@ -86,5 +87,68 @@ class Querys:
         except mysql.connector.Error as error:
             print(f"Failed to save daily report: {error}")
         finally:
-            self.con.close()
+            self.close_connection()
     
+    def daily_report_check(self,date):
+        query = "SELECT daily_sales,cash,credit_card,expenses,discounts FROM daily_reports WHERE date = %s"
+        values = (date,)
+        self.cursor.execute(query,values)
+        save = self.cursor.fetchall()
+        return save
+    
+    def daily_report_update(self,date,daily_sale,cash,credit_card,expenses,discounts):
+        query = """
+        UPDATE daily_reports
+        SET daily_sales = %s , cash = %s , credit_card = %s , expenses = %s , discounts = %s 
+        WHERE date = %s
+        """
+        values = (daily_sale,cash,credit_card,expenses,discounts,date)
+        try:
+            self.cursor.execute(query,values)
+            self.con.commit()
+        except mysql.connector.Error as error:
+            print(f"Failed to update daily report: {error}")
+            self.con.rollback()
+        finally: 
+            self.close_connection()
+            
+    def show_workers(self):
+        self.cursor.execute("SELECT name,id FROM workers")
+        data = self.cursor.fetchall()
+        print(data)
+        self.cursor.close()
+
+    def add_worker(self, name, salary, hire_date):
+        query = """
+        INSERT INTO workers (name, salary, hire_date) 
+        VALUES (%s, %s, %s, %s)
+        """
+        values = (name, salary, hire_date)
+        
+        try:
+            self.cursor.execute(query, values)
+            self.con.commit()
+            print("Worker added successfully!")
+        except mysql.connector.Error as error:
+            print(f"Failed to add worker: {error}")
+            self.con.rollback()
+        finally:
+            self.close_connection()
+
+
+    def del_worker(self, id):
+        query = "DELETE FROM workers WHERE id = %s"
+        values = (id)
+        try:
+            self.cursor.execute(query, values)
+            self.con.commit()
+            print("Worker deleted successfully!")
+        except mysql.connector.Error as error:
+            print(f"Failed to delete worker: {error}")
+            self.con.rollback()
+        finally:
+            self.close_connection()
+    def update_worker(self):
+        query = """
+        UPDATE workers
+        """

@@ -68,6 +68,16 @@ class DataBase:
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )""")
-        
+        self.cursor.execute("""
+        CREATE TABLE IF NOT EXISTS workers (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(100),
+            surname VARCHAR(100),
+            salary DECIMAL(10, 2),
+            hire_date DATE NOT NULL
+        )""")
         self.cursor.close()
         self.con.close()
+
+db = DataBase()
+db.create_tables()

@@ -24,18 +24,21 @@ class Functions:
         self.query.products(category)
         
         while True:
-            new_product_name = input("New product name: ")
-            new_product_quantity = int(input("New product quantity: "))
-            new_product_price = int(input("New product price: "))
-            new_product_code = int(input("New product code: "))
-            self.query.add_product(category,new_product_name,new_product_quantity,new_product_price,new_product_code)
+            try:
+                new_product_name = input("New product name: ")
+                new_product_quantity = int(input("New product quantity: "))
+                new_product_price = int(input("New product price: "))
+                new_product_code = int(input("New product code: "))
+                self.query.add_product(category,new_product_name,new_product_quantity,new_product_price,new_product_code)
 
-            self.interfaces.break_point()
-            break_point = int(input("Selection: "))
-            if break_point ==1:
-                continue
-            elif break_point == 0:
-                break
+                self.interfaces.break_point()
+                break_point = int(input("Selection: "))
+                if break_point ==1:
+                    continue
+                elif break_point == 0:
+                    break
+            except ValueError as err : print(err)
+            except Exception as e: print(f"An error occurred: {e}")
 
 
     def del_products(self):
@@ -118,7 +121,7 @@ class Functions:
             break
 
     def daily_report(self):
-        while True:
+        try:
             date = datetime.today().date()
             daily_sales = int(input("Daily sales amount: "))
             cash = int(input('Cash in the safe: '))
@@ -127,6 +130,82 @@ class Functions:
             discounts = int(input("Daily discounts: "))
 
             self.query.daily_reports(date,daily_sales,cash,credit_card,expenses,discounts)
-            print("Have a great day!")
-            break
+            print("Daily report saved!")
+        except ValueError as err : print(err)
+        except Exception as e: print(f"An error occurred: {e}")
+
+    def calculation(self):
+        date = datetime.today().date()
+        report_data = self.query.daily_report_check(date)
+        
+        data = []
+        data.extend(report_data)
+        tuple_data = data[0]
+        dailysale,cash,credit_card,expenses,discount = [item for item in tuple_data]
+        diffrence = tuple_data[0]-tuple_data[1]-tuple_data[2]-tuple_data[3]-tuple_data[4]
+
+        if diffrence == 0: print("The calculation is correct !")
+        elif abs(diffrence) <= 100: print(f"The calculation is nearly correct , the diffrence is :{diffrence}")
+        else : 
+            self.interfaces.calculation_false(dailysale,cash,credit_card,expenses,discount,diffrence)
+            while True:
+                self.interfaces.daily_report_update_interface()
+                selection = int(input("Selection : "))
+                if selection ==1: self.update_daily_report()
+                elif selection ==0:break
+                else: raise ValueError
+
+    def update_daily_report(self):
+        try:
+            date = datetime.today().date()
+            daily_sale = int(input("Daily sales amount: "))
+            cash = int(input('Cash in the safe: '))
+            credit_card = int(input('Credit card amount on the Z report: '))
+            expenses = int(input("Daily expenses: "))
+            discounts = int(input("Daily discounts: "))
+            
+            self.query.daily_report_update(date, daily_sale, cash, credit_card, expenses, discounts)
+
+            print("The daily report has been updated successfully!")
+        except ValueError as err:
+            print(f"Invalid input: {err}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def add_worker(self,name, salary, hire_date):
+        try:
+            name = input("Worker name: ")
+            salary = int(input("Daily salary: "))
+            hire_date = input("Hire date: ")
+
+            self.query.add_worker(name,salary,hire_date)
+
+            print("Worker saved successfully!")
+        except ValueError as err:print(f"Invalid input: {err}")
+        except Exception as e : print(f"An error occured: {e}")
+
+    def update_worker(self,name, salary, hire_date):
+        try:
+            worker_id = int(input("Worker id: "))
+            name = input("Worker name: ")
+            salary = int(input("Daily salary: "))
+            hire_date = input("Hire date: ")
+
+            self.query.update_worker(name,salary,hire_date,worker_id)
+
+            print("Worker saved successfully!")
+        except ValueError as err:print(f"Invalid input: {err}")
+        except Exception as e : print(f"An error occured: {e}")
     
+    def del_worker(self):
+        try:
+            self.query.show_workers()
+            worker_id = int(input("Worker id for deleting: "))
+
+            self.query.del_worker(worker_id)               
+            print("Worker deleted successfully!")
+
+        except ValueError as err:print(f"Invalid input: {err}")
+        except Exception as e : print(f"An error occured: {e}")
+                
+

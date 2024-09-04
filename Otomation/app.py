@@ -26,7 +26,7 @@ while True:
 
         if selection_3 ==1:function.daily_report()
         elif selection_3 ==2:function.restock()
-        elif selection_3 ==3:print("#")
+        elif selection_3 ==3:function.calculation()
 
     elif selection ==3:
         

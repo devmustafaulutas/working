@@ -20,10 +20,14 @@ Part-time çalıştığım bir iş yerinde manuel yapılan işler için gelişti
 ## 💻 Kurulum ve Çalıştırma
 
 ### 1. Depoyu Klonla
+```bash
 git clone https://github.com/kullaniciadi/muhasebe-otomasyonu.git
-
+```
 ### 2. Proje dizinine in
+```bash
 cd Otomation
-
+```
 ### 2. Projeyi çalıştır
+```bash
 python app.py
+```

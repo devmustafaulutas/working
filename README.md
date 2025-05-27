@@ -22,6 +22,7 @@ Part-time çalıştığım bir iş yerinde manuel yapılan işler için gelişti
 ### 1. Depoyu Klonla
 ```bash
 git clone https://github.com/devmustafaulutas/working.git```
+```
 ### 2. Proje dizinine in
 ```bash
 cd Otomation
